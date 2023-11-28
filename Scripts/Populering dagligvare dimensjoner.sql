@@ -14,7 +14,7 @@ delete from vare where vare_nr > -1;
 delete from varegruppe where varegruppe_nr > -1;
 delete from mengdeenhet where mengdeenhet_nr > -1;
 
-delete from kasse where kasse_nr > -1;
+delete from kasse where butikk_nr > -1 and kasse_nr > -1;
 delete from butikk where butikk_nr > -1;
 delete from kjede where kjede_nr > -1;
 
@@ -1599,13 +1599,13 @@ insert into kjedevarepris values(200, 877,'2023-01-01 00:00:00.000', NULL, 49.90
 insert into kjedevarepris values(200, 878,'2023-01-01 00:00:00.000', NULL, 28.60);
 
 update kjedevarepris
-set gjelder_til = '2023-10-31 23:59:59' where vare_nr in (select vare_nr from vare where varegruppe_nr in (4, 16, 19, 12, 45));
+set gjelder_til = '2023-10-31 23:59:59' where kjede_nr > -1 and vare_nr in (select vare_nr from vare where varegruppe_nr in (4, 16, 19, 12, 45)) and gjelder_fra is not null;
 
 insert into kjedevarepris 
 select kjede_nr, vare_nr, '2023-11-01', null, enhetpris_bel from kjedevarepris where vare_nr in (select vare_nr from vare where varegruppe_nr in (4, 16, 19, 12, 45));
 
 update kjedevarepris
-set enhetpris_bel = enhetpris_bel * 0.9 where gjelder_til is null and vare_nr in (select vare_nr from vare where varegruppe_nr in (4));
+set enhetpris_bel = enhetpris_bel * 0.9 where kjede_nr > -1 and gjelder_til is null and vare_nr in (select vare_nr from vare where varegruppe_nr in (4));
 
 update kjedevarepris
 set enhetpris_bel = enhetpris_bel * 1.1 where gjelder_til is null and kjede_nr = 100 and vare_nr in (select vare_nr from vare where varegruppe_nr in (16, 19, 12, 45));

@@ -15077,34 +15077,71 @@ insert into varelinje values(2153, 5, 297, 1.000, 24.90, 24.90);
 insert into varelinje values(2153, 6, 139, 1.000, 62.40, 62.40);
 insert into varelinje values(2153, 7, 484, 1.000, 22.40, 22.40);
 
+
 update varelinje set enhetpris_bel =
 (select min(enhetpris_bel) from handel, butikk, kjedevarepris
 where kjedevarepris.vare_nr = varelinje.vare_nr
 and kjedevarepris.kjede_nr = butikk.kjede_nr
 and handel.butikk_nr = butikk.butikk_nr
 and tidspunkt between gjelder_fra and ifnull(gjelder_til, '2999-12-31 23:59:59'))
-where handel_nr between 1 and 500;
+where handel_nr between 1 and 250;
+
 update varelinje set enhetpris_bel =
 (select min(enhetpris_bel) from handel, butikk, kjedevarepris
 where kjedevarepris.vare_nr = varelinje.vare_nr
 and kjedevarepris.kjede_nr = butikk.kjede_nr
 and handel.butikk_nr = butikk.butikk_nr
 and tidspunkt between gjelder_fra and ifnull(gjelder_til, '2999-12-31 23:59:59'))
-where handel_nr between 501 and 1000;
+where handel_nr between 251 and 500;
+
 update varelinje set enhetpris_bel =
 (select min(enhetpris_bel) from handel, butikk, kjedevarepris
 where kjedevarepris.vare_nr = varelinje.vare_nr
 and kjedevarepris.kjede_nr = butikk.kjede_nr
 and handel.butikk_nr = butikk.butikk_nr
 and tidspunkt between gjelder_fra and ifnull(gjelder_til, '2999-12-31 23:59:59'))
-where handel_nr between 1001 and 1500;
+where handel_nr between 501 and 750;
+
 update varelinje set enhetpris_bel =
 (select min(enhetpris_bel) from handel, butikk, kjedevarepris
 where kjedevarepris.vare_nr = varelinje.vare_nr
 and kjedevarepris.kjede_nr = butikk.kjede_nr
 and handel.butikk_nr = butikk.butikk_nr
 and tidspunkt between gjelder_fra and ifnull(gjelder_til, '2999-12-31 23:59:59'))
-where handel_nr between 1501 and 2000;
+where handel_nr between 751 and 1000;
+
+update varelinje set enhetpris_bel =
+(select min(enhetpris_bel) from handel, butikk, kjedevarepris
+where kjedevarepris.vare_nr = varelinje.vare_nr
+and kjedevarepris.kjede_nr = butikk.kjede_nr
+and handel.butikk_nr = butikk.butikk_nr
+and tidspunkt between gjelder_fra and ifnull(gjelder_til, '2999-12-31 23:59:59'))
+where handel_nr between 1001 and 1250;
+
+update varelinje set enhetpris_bel =
+(select min(enhetpris_bel) from handel, butikk, kjedevarepris
+where kjedevarepris.vare_nr = varelinje.vare_nr
+and kjedevarepris.kjede_nr = butikk.kjede_nr
+and handel.butikk_nr = butikk.butikk_nr
+and tidspunkt between gjelder_fra and ifnull(gjelder_til, '2999-12-31 23:59:59'))
+where handel_nr between 1251 and 1500;
+
+update varelinje set enhetpris_bel =
+(select min(enhetpris_bel) from handel, butikk, kjedevarepris
+where kjedevarepris.vare_nr = varelinje.vare_nr
+and kjedevarepris.kjede_nr = butikk.kjede_nr
+and handel.butikk_nr = butikk.butikk_nr
+and tidspunkt between gjelder_fra and ifnull(gjelder_til, '2999-12-31 23:59:59'))
+where handel_nr between 1501 and 1750;
+
+update varelinje set enhetpris_bel =
+(select min(enhetpris_bel) from handel, butikk, kjedevarepris
+where kjedevarepris.vare_nr = varelinje.vare_nr
+and kjedevarepris.kjede_nr = butikk.kjede_nr
+and handel.butikk_nr = butikk.butikk_nr
+and tidspunkt between gjelder_fra and ifnull(gjelder_til, '2999-12-31 23:59:59'))
+where handel_nr between 1751 and 2000;
+
 update varelinje set enhetpris_bel =
 (select min(enhetpris_bel) from handel, butikk, kjedevarepris
 where kjedevarepris.vare_nr = varelinje.vare_nr
